@@ -45,6 +45,7 @@ path.velocityX = -5;
 //criar menino correndo
 mainCyclist  = createSprite(70,150);
 mainCyclist.addAnimation("cycling",mainRacerImg1);
+mainCyclist.addAnimation("ground",racerground);
 mainCyclist.scale=0.07;
   
 //definir collider (colisor) para mainCyclist (ciclistaPrincipal)
@@ -124,12 +125,13 @@ function draw() {
 }else if (gameState === END) {
     gameOver.visible = true;
     //Acrescente o código para mostrar o texto da instrução restart (reiniciar) aqui
-    text("pressione a tecla seta para cima para reiniciar", 470, 200)
+    text("pressione a tecla espaço para reiniciar", 470, 200)
     textAlign(CENTER, TOP)  
   
     path.velocityX = 0;
     mainCyclist.velocityY = 0;
-    mainCyclist.addAnimation("ground",racerground);
+    
+    mainCyclist.changeAnimation("ground")
   
     pinkCG.setVelocityXEach(0);
     pinkCG.setLifetimeEach(-1);
@@ -183,7 +185,7 @@ function rest() {
     gameState = PLAY
     gameOver.visible = false
     distance = 0
-    mainCyclist.addAnimation("cycling")
+    mainCyclist.changeAnimation("cycling")
     redCG.destroyEach()
     yellowCG.destroyEach()
     pinkCG.destroyEach()
